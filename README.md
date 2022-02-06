@@ -9,3 +9,4 @@ Concepts used within the Application.
 4) API Project structuring
 5) Configuration and Environment Variables
 6) Source Control
+7) Angular

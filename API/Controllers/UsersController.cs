@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using API.Data;
 using API.Entities;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace API.Controllers
 {
@@ -19,18 +20,16 @@ namespace API.Controllers
         }
 
         [HttpGet]
-        public ActionResult<IEnumerable<AppUser>> GetUsers() //allows us to get information for our DbUsers
+        public async Task<ActionResult<IEnumerable<AppUser>>> GetUsers() //Need to give "await" keywords because we made it Async
         {
-            var users = _context.Users.ToList();
-
-            return users;
+            return await _context.Users.ToListAsync();
         }
 
         // api/users/3
         [HttpGet("{id}")]
-        public ActionResult<AppUser> GetUser(int id) // needed to remove the IEnumerable
+        public async Task<ActionResult<AppUser>> GetUser(int id) // needed to remove the IEnumerable
         {
-            return _context.Users.Find(id);
+            return await _context.Users.FindAsync(id);
         }
 
 
